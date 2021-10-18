@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mosaic.farmall">
    <application
-        android:label="farmall"
+        android:label="Farmall"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
