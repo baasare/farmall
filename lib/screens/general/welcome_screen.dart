@@ -69,7 +69,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                   child: CustomButton(
                     buttonColor: greenPrimary,
-                    textColor: whitePrimary,
+                    textColor: primaryWhite,
                     buttonText: "Go to Home",
                     elevation: 0.0,
                     buttonHeight: SizeConfig.blockSizeVertical! * 7,

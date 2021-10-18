@@ -126,7 +126,7 @@ class CustomDrawer extends StatelessWidget {
     SizeConfig().init(context);
 
     return Material(
-      color: whitePrimary,
+      color: primaryWhite,
       child: SafeArea(
         child: Theme(
           data: ThemeData(
@@ -156,7 +156,7 @@ class CustomDrawer extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                               fontFamily: AvailableFonts.primaryFont,
                               fontSize: 25.0,
-                              color: whitePrimary,
+                              color: primaryWhite,
                             ),
                           ),
                         ),

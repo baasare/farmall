@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: CustomButton(
         buttonColor: greenPrimary,
         buttonText: "Login",
-        textColor: whitePrimary,
+        textColor: primaryWhite,
         elevation: 5,
         buttonHeight: SizeConfig.blockSizeVertical! * 7,
         buttonWidth: SizeConfig.blockSizeHorizontal! * 70,

@@ -264,7 +264,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: CustomButton(
             buttonColor: greenPrimary,
             buttonText: "Create Account",
-            textColor: whitePrimary,
+            textColor: primaryWhite,
             elevation: 5,
             buttonHeight: SizeConfig.blockSizeVertical! * 7,
             buttonWidth: SizeConfig.blockSizeHorizontal! * 70,

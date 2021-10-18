@@ -171,4 +171,9 @@ class AvailableImages {
     'assetImage': AssetImage('assets/images/no_orders.png'),
     'assetPath': 'assets/images/no_orders.png',
   };
+
+  static const graph = {
+    'assetImage': AssetImage('assets/images/graph.png'),
+    'assetPath': 'assets/images/graph.png',
+  };
 }

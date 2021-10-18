@@ -44,7 +44,7 @@ class _SelectorWidgetState extends State<SelectorWidget> {
                   bottom: SizeConfig.blockSizeVertical! * 2,
                 ),
                 decoration: BoxDecoration(
-                  color: widget.choice == 0 ? greenPrimary : whitePrimary,
+                  color: widget.choice == 0 ? greenPrimary : primaryWhite,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(15.0),
                     topLeft: Radius.circular(15.0),
@@ -67,7 +67,7 @@ class _SelectorWidgetState extends State<SelectorWidget> {
                       widget.image[0],
                     ),
                     size: 10,
-                    color: widget.choice == 0 ? whitePrimary : greenPrimary,
+                    color: widget.choice == 0 ? primaryWhite : greenPrimary,
                   ),
                 ),
               ),
@@ -100,7 +100,7 @@ class _SelectorWidgetState extends State<SelectorWidget> {
                   bottom: SizeConfig.blockSizeVertical! * 2,
                 ),
                 decoration: BoxDecoration(
-                  color: widget.choice != 0 ? greenPrimary : whitePrimary,
+                  color: widget.choice != 0 ? greenPrimary : primaryWhite,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(15.0),
                     topLeft: Radius.circular(15.0),
@@ -123,7 +123,7 @@ class _SelectorWidgetState extends State<SelectorWidget> {
                       widget.image[1],
                     ),
                     size: 10,
-                    color: widget.choice != 0 ? whitePrimary : greenPrimary,
+                    color: widget.choice != 0 ? primaryWhite : greenPrimary,
                   ),
                 ),
               ),
