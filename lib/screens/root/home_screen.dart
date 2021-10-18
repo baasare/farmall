@@ -1,6 +1,7 @@
 import 'package:farmall/utils/app_config.dart';
 import 'package:farmall/utils/colors.dart';
 import 'package:farmall/utils/constants.dart';
+import 'package:farmall/widgets/custom_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -95,14 +96,19 @@ class _HomeScreenState extends State<HomeScreen> {
     SizeConfig().init(context);
 
     final appBar = AppBar(
-      leading: IconButton(
-        icon: Icon(
-          Icons.menu,
-          color: greyDarker,
-        ),
-        tooltip: 'Menu Icon',
-        onPressed: () {
-          Scaffold.of(context).openDrawer();
+      leading: Builder(
+        builder: (BuildContext appBarContext) {
+          return IconButton(
+            icon: Icon(
+              Icons.menu,
+              color: greyDarker,
+            ),
+            tooltip: 'Menu Icon',
+            onPressed: () {
+              // Scaffold.of(context).openDrawer();
+              AppDrawer.of(appBarContext)!.toggle();
+            },
+          );
         },
       ),
       elevation: 0,
