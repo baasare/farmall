@@ -76,7 +76,7 @@ class _OrderScreenState extends State<OrderScreen> {
                               fontWeight: FontWeight.w500,
                               fontFamily: AvailableFonts.primaryFont,
                               fontSize: 17.0,
-                              color: greenPrimary,
+                              color: greenDarker,
                             ),
                           ),
                         ),
@@ -118,7 +118,7 @@ class _OrderScreenState extends State<OrderScreen> {
         textAlign: TextAlign.left,
         style: TextStyle(
           fontFamily: AvailableFonts.primaryFont,
-          color: greenPrimary,
+          color: greenDarker,
           fontWeight: FontWeight.w600,
           fontSize: 20,
         ),

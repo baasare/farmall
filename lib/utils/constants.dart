@@ -19,6 +19,16 @@ class SavedPreferencesKeys {
   static const currentUserType = "current_user_type";
   static const seenWalkThroughKey = "walkthrough";
   static const deviceFirebaseTokenKey = "firebase_token";
+  static const accountSetupStepKey = "firebase_token";
+}
+
+// sharedPreferences keys
+class AccountSetupStepKeys {
+  static const profileSetup = "profile_setup";
+  static const productCategorySetup = "product_category_setup";
+  static const landSizeSetup = "land_size_setup";
+  static const currentLocationSetup = "current_location_setup";
+  static const certificateSetup = "certificate_setup";
 }
 
 // Icons

@@ -1,6 +1,5 @@
 import 'package:farmall/utils/app_config.dart';
 import 'package:farmall/utils/colors.dart';
-import 'package:farmall/utils/validator.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -59,7 +58,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
-          borderSide: BorderSide(color: greenPrimary),
+          borderSide: BorderSide(color: greenDarker),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -81,7 +80,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       ),
       keyboardType: TextInputType.text,
       style: TextStyle(color: blackPrimary),
-      validator: (value) => Validator.textValidator(value!),
+      validator: (value) => widget.fieldValidator(value!),
       onFieldSubmitted: (v) {
         FocusScope.of(context).requestFocus(widget.nextFocus);
       },

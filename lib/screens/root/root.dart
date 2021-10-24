@@ -1,7 +1,7 @@
-import 'package:farmall/screens/root/feed_screen.dart';
 import 'package:farmall/screens/root/home_screen.dart';
 import 'package:farmall/screens/root/inventory_screen.dart';
 import 'package:farmall/screens/root/order_screen.dart';
+import 'package:farmall/screens/root/profile_screen.dart';
 import 'package:farmall/utils/app_config.dart';
 import 'package:farmall/utils/colors.dart';
 import 'package:farmall/widgets/custom_drawer.dart';
@@ -37,9 +37,9 @@ class _RootState extends State<Root> {
           showUnselectedLabels: true,
           selectedFontSize: SizeConfig.safeBlockHorizontal! * 3.0,
           unselectedFontSize: SizeConfig.safeBlockHorizontal! * 3.0,
-          selectedLabelStyle: TextStyle(color: greenPrimary),
+          selectedLabelStyle: TextStyle(color: greenDarker),
           unselectedLabelStyle: TextStyle(color: greyPrimary),
-          selectedItemColor: greenPrimary,
+          selectedItemColor: greenDarker,
           currentIndex: _currentIndex,
           elevation: 0.0,
           onTap: onTabTapped,
@@ -48,38 +48,38 @@ class _RootState extends State<Root> {
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
-                color: _currentIndex == 0 ? greenPrimary : greyPrimary,
+                color: _currentIndex == 0 ? greenDarker : greyPrimary,
               ),
               label: "Home",
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.format_list_bulleted_sharp,
-                color: _currentIndex == 1 ? greenPrimary : greyPrimary,
+                Icons.shopping_bag_outlined,
+                color: _currentIndex == 1 ? greenDarker : greyPrimary,
               ),
-              label: "Feed",
+              label: "Inventory",
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.add_shopping_cart_sharp,
-                color: _currentIndex == 2 ? greenPrimary : greyPrimary,
+                color: _currentIndex == 2 ? greenDarker : greyPrimary,
               ),
               label: "Orders",
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.shopping_bag_outlined,
-                color: _currentIndex == 3 ? greenPrimary : greyPrimary,
+                Icons.account_circle_sharp,
+                color: _currentIndex == 3 ? greenDarker : greyPrimary,
               ),
-              label: "Inventory",
+              label: "Profile",
             ),
           ],
         ),
         body: [
           HomeScreen(),
-          FeedScreen(),
-          OrderScreen(),
           InventoryScreen(),
+          OrderScreen(),
+          ProfileScreen(),
         ][_currentIndex],
       ),
     );

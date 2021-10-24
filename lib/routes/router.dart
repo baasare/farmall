@@ -8,7 +8,7 @@ import 'package:farmall/screens/authentication/registration_screen.dart';
 import 'package:farmall/screens/general/account_selection_screen.dart';
 import 'package:farmall/screens/general/customer_walkthrough_screen.dart';
 import 'package:farmall/screens/general/farmer_walkthrough_screen.dart';
-import 'package:farmall/screens/general/splash_screen.dart';
+import 'package:farmall/screens/general/first_screen.dart';
 import 'package:farmall/screens/general/welcome_screen.dart';
 import 'package:farmall/screens/root/root.dart';
 import 'package:farmall/screens/test.dart';
@@ -17,9 +17,9 @@ import 'package:page_transition/page_transition.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case splashViewRoute:
+    case firstViewRoute:
       return PageTransition(
-        child: SplashScreen(),
+        child: FirstScreen(),
         type: PageTransitionType.fade,
       );
     case accountSelectionViewRoute:

@@ -1,6 +1,6 @@
 const String testViewRoute = 'test';
 
-const String splashViewRoute = 'splash';
+const String firstViewRoute = 'first_view';
 const String accountSelectionViewRoute = 'account_selection';
 const String farmersWalkThroughViewRoute = 'farmers_walk_through';
 const String customersWalkThroughViewRoute = 'customers_walk_through';

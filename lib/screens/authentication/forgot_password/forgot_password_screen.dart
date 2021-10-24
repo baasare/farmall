@@ -157,7 +157,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         top: SizeConfig.blockSizeVertical! * 5,
       ),
       child: CustomButton(
-        buttonColor: greenPrimary,
+        buttonColor: greenDarker,
         buttonText: "Set Password",
         elevation: 5,
         buttonHeight: SizeConfig.blockSizeVertical! * 7,

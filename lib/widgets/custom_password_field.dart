@@ -79,7 +79,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
-          borderSide: BorderSide(color: greenPrimary),
+          borderSide: BorderSide(color: greenDarker),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),

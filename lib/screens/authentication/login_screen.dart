@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
         top: SizeConfig.blockSizeVertical! * 3,
       ),
       child: CustomButton(
-        buttonColor: greenPrimary,
+        buttonColor: greenDarker,
         buttonText: "Login",
         textColor: primaryWhite,
         elevation: 5,
@@ -175,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
             fontWeight: FontWeight.w600,
             fontFamily: AvailableFonts.primaryFont,
             fontSize: 13.0,
-            color: greenPrimary,
+            color: greenDarker,
           ),
         ),
       ),
@@ -207,7 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontWeight: FontWeight.w500,
                     fontFamily: AvailableFonts.primaryFont,
                     fontSize: 14.0,
-                    color: greenPrimary,
+                    color: greenDarker,
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {

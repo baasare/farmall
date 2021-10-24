@@ -1,15 +1,17 @@
+import 'dart:async';
+
 import 'package:farmall/routes/routes.dart';
 import 'package:farmall/utils/app_config.dart';
 import 'package:farmall/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SplashScreen extends StatefulWidget {
+class FirstScreen extends StatefulWidget {
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _FirstScreenState createState() => _FirstScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _FirstScreenState extends State<FirstScreen> {
   var _accessToken, _walkThroughSeen;
   bool _isLoggedIn = true, _hasSeenWalkThrough = true;
 
@@ -38,10 +40,12 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     }
 
-    Navigator.of(context).pushNamedAndRemoveUntil(
-      accountSelectionViewRoute,
-      (Route<dynamic> route) => false,
-    );
+    Timer(Duration(seconds: 2), () {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        accountSelectionViewRoute,
+        (Route<dynamic> route) => false,
+      );
+    });
 
     // Timer(Duration(seconds: 1), () {
     //   Navigator.of(context).pushNamedAndRemoveUntil(

@@ -1,5 +1,4 @@
 import 'package:farmall/routes/routes.dart';
-import 'package:farmall/services/local_storage_service.dart';
 import 'package:farmall/utils/app_config.dart';
 import 'package:farmall/utils/colors.dart';
 import 'package:farmall/utils/constants.dart';
@@ -13,62 +12,7 @@ class AccountSelectionScreen extends StatefulWidget {
 }
 
 class _AccountSelectionScreenState extends State<AccountSelectionScreen> {
-  PageController controller = PageController();
-  int currentPage = 0;
-
-  int accountType = 0, buyerType = 0, sellerType = 0;
-
-  List<String> titles = [
-    "Choose Account Type",
-    "Choose Buyer Account Type",
-    "Choose Seller Account Type",
-  ];
-
-  void pageChange() {
-    if (currentPage == 1) {
-      LocalStorageService.saveToDisk(
-        SavedPreferencesKeys.currentUserType,
-        0,
-      );
-      if (accountType == 0) {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          customersWalkThroughViewRoute,
-          (Route<dynamic> route) => false,
-        );
-      } else {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          farmersWalkThroughViewRoute,
-          (Route<dynamic> route) => false,
-        );
-      }
-    } else {
-      setState(() {
-        currentPage++;
-      });
-
-      controller.animateToPage(
-        currentPage,
-        duration: Duration(milliseconds: 550),
-        curve: Curves.linearToEaseOut,
-      );
-    }
-  }
-
-  @override
-  initState() {
-    super.initState();
-    controller = PageController(
-      initialPage: currentPage,
-      keepPage: false,
-      viewportFraction: 1.0,
-    );
-  }
-
-  @override
-  dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+  int accountType = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -90,78 +34,36 @@ class _AccountSelectionScreenState extends State<AccountSelectionScreen> {
                   width: SizeConfig.blockSizeHorizontal! * 30,
                 ),
               ),
-              Expanded(
-                child: PageView(
-                  controller: controller,
-                  physics: NeverScrollableScrollPhysics(),
-                  children: <Widget>[
-                    selectorBuilder(
-                      SelectorWidget(
-                        choice: accountType,
-                        title: ["Buyer", "Seller"],
-                        image: [
-                          AvailableImages.buyer["assetPath"] as String,
-                          AvailableImages.seller["assetPath"] as String
-                        ],
-                        callback: (value) {
-                          setState(() {
-                            accountType = value;
-                          });
-                        },
-                      ),
-                      titles[0],
-                    ),
-                    accountType == 0
-                        ? selectorBuilder(
-                            SelectorWidget(
-                              choice: buyerType,
-                              title: ["Individual", "Business"],
-                              image: [
-                                AvailableImages.individual["assetPath"]
-                                    as String,
-                                AvailableImages.business["assetPath"] as String
-                              ],
-                              callback: (value) {
-                                setState(() {
-                                  buyerType = value;
-                                });
-                              },
-                            ),
-                            titles[1],
-                          )
-                        : selectorBuilder(
-                            SelectorWidget(
-                              choice: sellerType,
-                              title: ["Individual", "Cooperatives"],
-                              image: [
-                                AvailableImages.individual["assetPath"]
-                                    as String,
-                                AvailableImages.cooperative["assetPath"]
-                                    as String
-                              ],
-                              callback: (value) {
-                                setState(() {
-                                  sellerType = value;
-                                });
-                              },
-                            ),
-                            titles[2],
-                          ),
+              selectorBuilder(
+                SelectorWidget(
+                  choice: accountType,
+                  title: ["Individual", "Cooperatives"],
+                  image: [
+                    AvailableImages.individual["assetPath"] as String,
+                    AvailableImages.cooperative["assetPath"] as String
                   ],
+                  callback: (value) {
+                    setState(() {
+                      accountType = value;
+                    });
+                  },
                 ),
+                "Choose Account Type",
               ),
               Padding(
                 padding: EdgeInsets.only(
+                  top: SizeConfig.blockSizeVertical! * 10,
                   bottom: SizeConfig.blockSizeVertical! * 20,
                 ),
                 child: CustomButton(
-                  buttonColor: greenPrimary,
+                  buttonColor: greenDarker,
                   textColor: Colors.white,
                   buttonText: "Continue",
                   elevation: 10,
                   buttonHeight: SizeConfig.blockSizeVertical! * 7,
                   buttonWidth: SizeConfig.blockSizeHorizontal! * 55,
-                  buttonOnPressed: pageChange,
+                  buttonOnPressed: () => Navigator.of(context)
+                      .pushReplacementNamed(farmersWalkThroughViewRoute),
                 ),
               ),
             ],

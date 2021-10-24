@@ -117,7 +117,7 @@ class _ForgotPasswordRequestScreenState
         top: SizeConfig.blockSizeVertical! * 5,
       ),
       child: CustomButton(
-        buttonColor: greenPrimary,
+        buttonColor: greenDarker,
         buttonText: "Continue",
         elevation: 5,
         buttonHeight: SizeConfig.blockSizeVertical! * 7,

@@ -80,7 +80,7 @@ class _ForgotPasswordCompleteScreenState
                     bottom: SizeConfig.blockSizeVertical! * 3,
                   ),
                   child: CustomButton(
-                    buttonColor: greenPrimary,
+                    buttonColor: greenDarker,
                     textColor: Colors.black,
                     buttonText: "Get Started",
                     elevation: 0.0,

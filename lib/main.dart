@@ -31,7 +31,7 @@ class App extends StatelessWidget {
       //make flutter aware of app routes using router generator in router.dart file
       onGenerateRoute: router.generateRoute,
 
-      initialRoute: splashViewRoute,
+      initialRoute: rootViewRoute,
     );
   }
 }

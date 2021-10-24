@@ -2,23 +2,94 @@ import 'package:farmall/utils/app_config.dart';
 import 'package:farmall/utils/colors.dart';
 import 'package:farmall/utils/constants.dart';
 import 'package:farmall/widgets/custom_drawer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class InventoryScreen extends StatefulWidget {
-  const InventoryScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
-  _InventoryScreenState createState() => _InventoryScreenState();
+  _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class _InventoryScreenState extends State<InventoryScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   var sortType = [
     "Today",
     "This week",
     "This month",
     "This year",
   ];
+
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
+    final appBar = AppBar(
+      leading: Builder(
+        builder: (BuildContext appBarContext) {
+          return IconButton(
+            icon: Icon(
+              Icons.menu,
+              color: greyDarker,
+            ),
+            tooltip: 'Menu Icon',
+            onPressed: () {
+              // Scaffold.of(context).openDrawer();
+              AppDrawer.of(appBarContext)!.toggle();
+            },
+          );
+        },
+      ),
+      elevation: 0,
+      backgroundColor: Colors.white,
+      title: Text(
+        "Profile",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+          fontFamily: AvailableFonts.primaryFont,
+          color: greenDarker,
+          fontWeight: FontWeight.w600,
+          fontSize: 20,
+        ),
+      ),
+      actions: [
+        IconButton(
+          icon: Icon(
+            Icons.sort,
+            color: greyDarker,
+          ),
+          tooltip: 'Menu Icon',
+          onPressed: () {
+            _show(context);
+          },
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.search,
+            color: greyDarker,
+          ),
+          tooltip: 'Menu Icon',
+          onPressed: () {
+            _show(context);
+          },
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.notifications_none_sharp,
+            color: greyDarker,
+          ),
+          tooltip: 'Menu Icon',
+          onPressed: () {
+            _show(context);
+          },
+        )
+      ],
+    );
+
+    return Scaffold(
+      key: widget.key,
+      appBar: appBar,
+    );
+  }
 
   void _show(BuildContext ctx) {
     showModalBottomSheet(
@@ -89,67 +160,5 @@ class _InventoryScreenState extends State<InventoryScreen> {
                 ),
               ),
             ));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
-    final appBar = AppBar(
-      leading: Builder(
-        builder: (BuildContext appBarContext) {
-          return IconButton(
-            icon: Icon(
-              Icons.menu,
-              color: greyDarker,
-            ),
-            tooltip: 'Menu Icon',
-            onPressed: () {
-              // Scaffold.of(context).openDrawer();
-              AppDrawer.of(appBarContext)!.toggle();
-            },
-          );
-        },
-      ),
-      elevation: 0,
-      backgroundColor: Colors.white,
-      title: Text(
-        "Inventory",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-          fontFamily: AvailableFonts.primaryFont,
-          color: greenDarker,
-          fontWeight: FontWeight.w600,
-          fontSize: 20,
-        ),
-      ),
-      actions: [
-        IconButton(
-          icon: Icon(
-            Icons.search,
-            color: greyDarker,
-          ),
-          tooltip: 'Menu Icon',
-          onPressed: () {
-            _show(context);
-          },
-        ),
-        IconButton(
-          icon: Icon(
-            Icons.notifications_none_sharp,
-            color: greyDarker,
-          ),
-          tooltip: 'Menu Icon',
-          onPressed: () {
-            _show(context);
-          },
-        )
-      ],
-    );
-
-    return Scaffold(
-      key: widget.key,
-      appBar: appBar,
-    );
   }
 }

@@ -205,7 +205,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.perm_identity_sharp, color: greenPrimary),
+                leading: Icon(Icons.perm_identity_sharp, color: greenDarker),
                 title: Text(
                   'Customers',
                   style: TextStyle(
@@ -219,7 +219,7 @@ class CustomDrawer extends StatelessWidget {
               ),
               ListTile(
                 leading:
-                    Icon(Icons.add_shopping_cart_outlined, color: greenPrimary),
+                    Icon(Icons.add_shopping_cart_outlined, color: greenDarker),
                 title: Text(
                   'Discount',
                   style: TextStyle(
@@ -232,7 +232,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.settings, color: greenPrimary),
+                leading: Icon(Icons.settings, color: greenDarker),
                 title: Text(
                   'Settings',
                   style: TextStyle(
@@ -245,7 +245,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.info_outline_rounded, color: greenPrimary),
+                leading: Icon(Icons.info_outline_rounded, color: greenDarker),
                 title: Text(
                   'Support',
                   style: TextStyle(

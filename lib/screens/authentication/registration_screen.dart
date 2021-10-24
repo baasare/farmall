@@ -262,34 +262,40 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           top: SizeConfig.blockSizeVertical! * 3,
         ),
         child: CustomButton(
-            buttonColor: greenPrimary,
+            buttonColor: greenDarker,
             buttonText: "Create Account",
             textColor: primaryWhite,
             elevation: 5,
             buttonHeight: SizeConfig.blockSizeVertical! * 7,
             buttonWidth: SizeConfig.blockSizeHorizontal! * 70,
             buttonOnPressed: () {
-              if (_formKey.currentState!.validate()) {
-                SystemChannels.textInput.invokeMethod('TextInput.hide');
-                setState(() {
-                  _saving = true;
-                });
+              Navigator.pushNamed(
+                context,
+                verificationViewRoute,
+                arguments: {"phone_number": "+233506461741"},
+              );
 
-                if (passwordOneController.text != passwordTwoController.text) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: Color(0x5931D0F4),
-                      content: Text(
-                        "Passwords do not match",
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      duration: Duration(seconds: 4),
-                    ),
-                  );
-                } else {
-                  _registration();
-                }
-              }
+              // if (_formKey.currentState!.validate()) {
+              //   SystemChannels.textInput.invokeMethod('TextInput.hide');
+              //   setState(() {
+              //     _saving = true;
+              //   });
+              //
+              //   if (passwordOneController.text != passwordTwoController.text) {
+              //     ScaffoldMessenger.of(context).showSnackBar(
+              //       SnackBar(
+              //         backgroundColor: Color(0x5931D0F4),
+              //         content: Text(
+              //           "Passwords do not match",
+              //           style: TextStyle(color: Colors.black),
+              //         ),
+              //         duration: Duration(seconds: 4),
+              //       ),
+              //     );
+              //   } else {
+              //     _registration();
+              //   }
+              // }
             }),
       ),
     );
@@ -321,7 +327,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     fontWeight: FontWeight.w600,
                     fontFamily: AvailableFonts.primaryFont,
                     fontSize: 14.0,
-                    color: greenPrimary,
+                    color: greenDarker,
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
@@ -360,6 +366,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   void _registration() async {
-    Navigator.pushNamed(context, welcomeViewRoute);
+    Navigator.pushNamed(context, verificationViewRoute);
   }
 }

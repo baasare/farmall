@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static ThemeData primaryTheme = ThemeData(
     brightness: Brightness.light,
-    primaryColor: greenPrimary,
-    accentColor: greyPrimary,
+    primaryColor: greenDarker,
     fontFamily: AvailableFonts.primaryFont,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );

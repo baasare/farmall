@@ -22,8 +22,7 @@ class PinEntryTextField extends StatefulWidget {
     this.fontSize: 20.0,
     this.isTextObscure: false,
     this.showFieldAsBox: false,
-    this.cursorColor: Colors
-        .blue, // Adding a Material Color so that if the user want black, it get accepted too
+    this.cursorColor: Colors.blue,
     this.boxColor: Colors.blue,
     this.textColor: Colors.blue,
   }) : assert(fields > 0);
@@ -133,38 +132,27 @@ class PinEntryTextFieldState extends State<PinEntryTextField> {
         focusNode: _focusNodes[i],
         obscureText: widget.isTextObscure,
         decoration: InputDecoration(
-          filled: _focusNodes[i].hasFocus ? false : true,
-          fillColor: greyPrimary,
+          filled: false,
           counterText: "",
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: _focusNodes[i].hasFocus ? 2.0 : 0.0,
-              style: _focusNodes[i].hasFocus
-                  ? BorderStyle.solid
-                  : BorderStyle.none,
-            ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(10.0),
-            ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-                width: 1.0,
-                color: widget.boxColor,
-                style: _focusNodes[i].hasFocus
-                    ? BorderStyle.solid
-                    : BorderStyle.none),
-            borderRadius: BorderRadius.all(
-              Radius.circular(10.0),
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
+          border: UnderlineInputBorder(
             borderSide: BorderSide(
               width: 2.0,
-              color: widget.boxColor,
+              color: greenDarker,
+              style: BorderStyle.solid,
             ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(10.0),
+          ),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              width: 2.0,
+              color: greenDarker,
+              style: BorderStyle.solid,
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              width: 2.0,
+              color: greenDarker,
+              style: BorderStyle.solid,
             ),
           ),
         ),

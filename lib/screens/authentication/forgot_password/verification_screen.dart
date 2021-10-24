@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:farmall/routes/routes.dart';
 import 'package:farmall/utils/app_config.dart';
 import 'package:farmall/utils/colors.dart';
 import 'package:farmall/utils/constants.dart';
 import 'package:farmall/widgets/custom_button.dart';
 import 'package:farmall/widgets/custom_pin_field.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class VerificationScreen extends StatefulWidget {
@@ -43,56 +45,64 @@ class _VerificationScreenState extends State<VerificationScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    final appBar = AppBar(
-      leading: IconButton(
-        icon: Icon(
-          Icons.arrow_back_ios,
-          color: Colors.black,
-        ),
-        tooltip: 'Menu Icon',
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-      ),
-      elevation: 0,
-      centerTitle: true,
-      backgroundColor: Colors.white,
-      title: Text(
-        "Verify Phone",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-          fontFamily: AvailableFonts.primaryFont,
-          color: blackPrimary,
-          fontWeight: FontWeight.w600,
-          fontSize: 20,
-        ),
+    final header = Align(
+      alignment: Alignment.center,
+      child: Image.asset(
+        AvailableImages.appLogo["assetPath"] as String,
+        height: SizeConfig.blockSizeVertical! * 7,
       ),
     );
 
-    final title = Text(
-      "Please enter the 4 digits code that was sent to  your phone number.",
-      textAlign: TextAlign.left,
-      style: TextStyle(
-        fontFamily: AvailableFonts.primaryFont,
-        color: greyPrimary,
-        fontWeight: FontWeight.w400,
-        fontSize: 17,
-        letterSpacing: 0.5,
-      ),
+    final title = Column(
+      children: [
+        SizedBox(
+          height: SizeConfig.blockSizeVertical! * 10.0,
+        ),
+        Text(
+          "Let’s verify your account",
+          style: TextStyle(
+            color: blackPrimary,
+            fontFamily: AvailableFonts.primaryFont,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.6,
+            wordSpacing: 1.0,
+            fontSize: 30.0,
+          ),
+        ),
+        SizedBox(
+          height: SizeConfig.blockSizeVertical! * 2.0,
+        ),
+        SizedBox(
+          width: SizeConfig.blockSizeHorizontal! * 60,
+          child: Text(
+            "A code has been sent to phone number used for registration",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: blackPrimary,
+              fontSize: 17.0,
+              height: 1.4,
+              fontFamily: AvailableFonts.primaryFont,
+              fontWeight: FontWeight.w400,
+              letterSpacing: 0.6,
+            ),
+          ),
+        ),
+      ],
     );
 
     final submitBtn = Padding(
       padding: EdgeInsets.only(
-        top: SizeConfig.blockSizeVertical! * 3,
+        top: SizeConfig.blockSizeVertical! * 20,
       ),
       child: CustomButton(
-          buttonColor: greenPrimary,
-          buttonText: "Confirm",
+          buttonColor: greenDarker,
+          textColor: Colors.white,
+          buttonText: "Verify",
           elevation: 5,
           buttonHeight: SizeConfig.blockSizeVertical! * 7,
-          buttonWidth: SizeConfig.blockSizeHorizontal! * 100,
+          buttonWidth: SizeConfig.blockSizeHorizontal! * 70,
           buttonOnPressed: () {
-            if (_pinCode.length == 4)
+            if (_pinCode.length == 6)
               _codeVerification();
             else {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -115,53 +125,57 @@ class _VerificationScreenState extends State<VerificationScreen> {
           top: SizeConfig.blockSizeVertical! * 5,
         ),
         child: PinEntryTextField(
-          fields: 4,
-          isTextObscure: true,
-          fieldWidth: SizeConfig.blockSizeHorizontal! * 15,
+          fields: 6,
+          isTextObscure: false,
+          fieldWidth: SizeConfig.blockSizeHorizontal! * 10,
           onSubmit: getPinCode,
-          cursorColor: greyPrimary,
-          textColor: greyPrimary,
-          boxColor: Colors.lightBlueAccent,
+          cursorColor: greenPrimary,
+          textColor: greenPrimary,
+          boxColor: greenPrimary,
         ));
 
     final resendCode = Container(
       padding: EdgeInsets.only(
         top: SizeConfig.blockSizeVertical! * 5,
-        left: SizeConfig.safeBlockHorizontal! * 10,
-        right: SizeConfig.safeBlockHorizontal! * 10,
+        // left: SizeConfig.safeBlockHorizontal! * 10,
+        // right: SizeConfig.safeBlockHorizontal! * 10,
       ),
       child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Column(
-            children: [
-              Text(
-                'I Didn\'t receive any code',
-                style: TextStyle(
-                  letterSpacing: 0.5,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: AvailableFonts.primaryFont,
-                  fontSize: 15.0,
-                  color: greyPrimary,
-                ),
+        alignment: Alignment.bottomCenter,
+        child: RichText(
+          text: TextSpan(
+              text: 'Didn\'t receive the code?',
+              style: TextStyle(
+                letterSpacing: 0.5,
+                fontWeight: FontWeight.w400,
+                fontFamily: AvailableFonts.primaryFont,
+                fontSize: 14.0,
+                color: greyPrimary,
               ),
-              Text(
-                'Resend',
-                style: TextStyle(
-                  letterSpacing: 0.5,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: AvailableFonts.primaryFont,
-                  fontSize: 15.0,
-                  color: greenPrimary,
-                ),
-              )
-            ],
-          )),
+              children: <TextSpan>[
+                TextSpan(
+                  text: ' send again',
+                  style: TextStyle(
+                    letterSpacing: 0.5,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: AvailableFonts.primaryFont,
+                    fontSize: 14.0,
+                    color: greenDarker,
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      // Navigator.pushReplacementNamed(
+                      //     context, registrationViewRoute);
+                    },
+                )
+              ]),
+        ),
+      ),
     );
 
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Colors.white,
-      appBar: appBar,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(
@@ -169,13 +183,16 @@ class _VerificationScreenState extends State<VerificationScreen> {
             left: SizeConfig.blockSizeHorizontal! * 5,
             right: SizeConfig.blockSizeHorizontal! * 5,
           ),
-          child: Column(
-            children: <Widget>[
-              title,
-              verificationForm,
-              submitBtn,
-              resendCode,
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                header,
+                title,
+                verificationForm,
+                resendCode,
+                submitBtn,
+              ],
+            ),
           ),
         ),
       ),
@@ -210,5 +227,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
     );
   }
 
-  void _codeVerification() async {}
+  void _codeVerification() async {
+    Navigator.pushNamed(context, welcomeViewRoute);
+  }
 }

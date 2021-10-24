@@ -124,7 +124,7 @@ class _CustomerWalkThroughScreenState extends State<CustomerWalkThroughScreen> {
                     controller: controller,
                     count: 3,
                     effect: WormEffect(
-                      activeDotColor: greenPrimary,
+                      activeDotColor: greenDarker,
                       dotColor: greyPrimary,
                       dotWidth: 8.0,
                       dotHeight: 8.0,
@@ -136,7 +136,7 @@ class _CustomerWalkThroughScreenState extends State<CustomerWalkThroughScreen> {
                     height: SizeConfig.blockSizeVertical! * 2.5,
                   ),
                   CustomButton(
-                    buttonColor: greenPrimary,
+                    buttonColor: greenDarker,
                     textColor: Colors.white,
                     buttonText: "Get Started",
                     elevation: 10,
@@ -179,7 +179,7 @@ class _CustomerWalkThroughScreenState extends State<CustomerWalkThroughScreen> {
                             TextSpan(
                               text: ' User Agreement',
                               style: TextStyle(
-                                color: greenPrimary,
+                                color: greenDarker,
                                 fontSize: 14.0,
                                 height: 1.4,
                                 fontFamily: AvailableFonts.primaryFont,
@@ -203,7 +203,7 @@ class _CustomerWalkThroughScreenState extends State<CustomerWalkThroughScreen> {
                             TextSpan(
                               text: 'Privacy Policy.',
                               style: TextStyle(
-                                color: greenPrimary,
+                                color: greenDarker,
                                 fontSize: 14.0,
                                 height: 1.4,
                                 fontFamily: AvailableFonts.primaryFont,

@@ -41,7 +41,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: Image.asset(
                     AvailableImages.welcome["assetPath"] as String,
                     fit: BoxFit.cover,
-                    height: SizeConfig.blockSizeVertical! * 50,
+                    height: SizeConfig.blockSizeVertical! * 40,
                   ),
                 ),
               ),
@@ -65,15 +65,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                    bottom: SizeConfig.blockSizeVertical! * 3,
+                    bottom: SizeConfig.blockSizeVertical! * 10,
                   ),
                   child: CustomButton(
-                    buttonColor: greenPrimary,
+                    buttonColor: greenDarker,
                     textColor: primaryWhite,
                     buttonText: "Go to Home",
                     elevation: 0.0,
                     buttonHeight: SizeConfig.blockSizeVertical! * 7,
-                    buttonWidth: SizeConfig.blockSizeHorizontal! * 85,
+                    buttonWidth: SizeConfig.blockSizeHorizontal! * 70,
                     buttonOnPressed: () => Navigator.of(context)
                         .pushReplacementNamed(rootViewRoute),
                   ),
