@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   continued() {
-    _currentStep < 2 ? setState(() => _currentStep += 1) : null;
+    _currentStep < 4 ? setState(() => _currentStep += 1) : null;
   }
 
   cancel() {
@@ -609,7 +609,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           isActive: _currentStep >= 0,
-                          state: _currentStep >= 0
+                          state: _currentStep >= 1
                               ? StepState.complete
                               : StepState.disabled,
                         ),
@@ -647,7 +647,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           isActive: _currentStep >= 0,
-                          state: _currentStep >= 0
+                          state: _currentStep >= 2
                               ? StepState.complete
                               : StepState.disabled,
                         ),
@@ -685,7 +685,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           isActive: _currentStep >= 0,
-                          state: _currentStep >= 0
+                          state: _currentStep >= 3
                               ? StepState.complete
                               : StepState.disabled,
                         ),
@@ -722,13 +722,25 @@ class _HomeScreenState extends State<HomeScreen> {
                               buttonOnPressed: () {},
                             ),
                           ),
-                          isActive: _currentStep >= 0,
-                          state: _currentStep >= 0
+                          isActive: _currentStep >= 1,
+                          state: _currentStep >= 4
                               ? StepState.complete
                               : StepState.disabled,
                         ),
                       ],
                     ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CustomButton(
+                    buttonColor: greyPrimary,
+                    textColor: whitePrimary,
+                    buttonText: "Proceed to Payments",
+                    elevation: 5,
+                    buttonHeight: SizeConfig.blockSizeVertical! * 7,
+                    buttonWidth: SizeConfig.blockSizeHorizontal! * 70,
+                    buttonOnPressed: () {},
                   ),
                 ),
               ],
