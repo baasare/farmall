@@ -1,3 +1,4 @@
+import 'package:farmall/routes/routes.dart';
 import 'package:farmall/utils/app_config.dart';
 import 'package:farmall/utils/colors.dart';
 import 'package:farmall/utils/constants.dart';
@@ -14,11 +15,233 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
   var sortType = [
-    "Today",
-    "This week",
-    "This month",
-    "This year",
+    "All",
+    "Date",
+    "Largest",
+    "Smallest",
   ];
+
+  String _dropDownValue = "Pending";
+
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
+    final appBar = AppBar(
+      leading: Builder(
+        builder: (BuildContext appBarContext) {
+          return IconButton(
+            icon: Icon(
+              Icons.menu,
+              color: greyDarker,
+            ),
+            tooltip: 'Menu Icon',
+            onPressed: () {
+              // Scaffold.of(context).openDrawer();
+              AppDrawer.of(appBarContext)!.toggle();
+            },
+          );
+        },
+      ),
+      elevation: 0,
+      backgroundColor: Colors.white,
+      title: Text(
+        "Orders",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+          fontFamily: AvailableFonts.primaryFont,
+          color: greenDarker,
+          fontWeight: FontWeight.w600,
+          fontSize: 20,
+        ),
+      ),
+      actions: [
+        IconButton(
+          icon: Icon(
+            Icons.search,
+            color: greyDarker,
+          ),
+          tooltip: 'Menu Icon',
+          onPressed: () {
+            _show(context);
+          },
+        ),
+      ],
+    );
+
+    return Scaffold(
+      key: widget.key,
+      appBar: appBar,
+      backgroundColor: Color(0xFFF5F7F9),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                top: SizeConfig.blockSizeVertical! * 2,
+                left: SizeConfig.blockSizeHorizontal! * 3,
+                right: SizeConfig.blockSizeHorizontal! * 3,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: SizeConfig.blockSizeHorizontal! * 20,
+                    child: DropdownButton(
+                      hint: Text(
+                        _dropDownValue,
+                        style: TextStyle(
+                          fontFamily: AvailableFonts.primaryFont,
+                          color: blackPrimary,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 17,
+                        ),
+                      ),
+                      underline: SizedBox(),
+                      iconSize: 25.0,
+                      items: [
+                        'Pending',
+                        'Fulfilled',
+                      ].map(
+                        (val) {
+                          return DropdownMenuItem(
+                            value: val,
+                            child: Text(
+                              val,
+                              style: TextStyle(
+                                fontFamily: AvailableFonts.primaryFont,
+                                color: blackPrimary,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17,
+                              ),
+                            ),
+                          );
+                        },
+                      ).toList(),
+                      onChanged: (String? newValue) {
+                        _dropDownValue = newValue!;
+                        setState(() {});
+                      },
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _show(context);
+                    },
+                    child: Icon(
+                      Icons.filter_list,
+                      color: blackPrimary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () => Navigator.pushNamed(context, orderDetailViewRoute),
+              child: Container(
+                width: SizeConfig.blockSizeHorizontal! * 100,
+                padding: EdgeInsets.only(
+                  top: SizeConfig.blockSizeVertical! * 2,
+                  bottom: SizeConfig.blockSizeVertical! * 2,
+                  right: SizeConfig.blockSizeHorizontal! * 3,
+                  left: SizeConfig.blockSizeHorizontal! * 3,
+                ),
+                margin: EdgeInsets.only(
+                  right: SizeConfig.blockSizeHorizontal! * 3,
+                  left: SizeConfig.blockSizeHorizontal! * 3,
+                  top: SizeConfig.blockSizeVertical! * 2,
+                  bottom: SizeConfig.blockSizeVertical! * 2,
+                ),
+                decoration: BoxDecoration(
+                  color: primaryWhite,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(3.0),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'ID: 1456',
+                          style: TextStyle(
+                            letterSpacing: 0.5,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: AvailableFonts.primaryFont,
+                            fontSize: 15.0,
+                            color: greyDarkest,
+                          ),
+                        ),
+                        Text(
+                          'Pending',
+                          style: TextStyle(
+                            letterSpacing: 0.5,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: AvailableFonts.primaryFont,
+                            fontSize: 15.0,
+                            color: Colors.red.shade500,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      'Red Lentils',
+                      style: TextStyle(
+                        letterSpacing: 0.5,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: AvailableFonts.primaryFont,
+                        fontSize: 15.0,
+                        color: blackPrimary,
+                      ),
+                    ),
+                    Text(
+                      '12/05/21',
+                      style: TextStyle(
+                        letterSpacing: 0.5,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: AvailableFonts.primaryFont,
+                        fontSize: 15.0,
+                        color: greyDarkest,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Quantity: 563Kg',
+                          style: TextStyle(
+                            letterSpacing: 0.5,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: AvailableFonts.primaryFont,
+                            fontSize: 15.0,
+                            color: greyDarkest,
+                          ),
+                        ),
+                        Text(
+                          '\$25.0',
+                          style: TextStyle(
+                            letterSpacing: 0.5,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: AvailableFonts.primaryFont,
+                            fontSize: 15.0,
+                            color: blackPrimary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   void _show(BuildContext ctx) {
     showModalBottomSheet(
@@ -89,67 +312,5 @@ class _OrderScreenState extends State<OrderScreen> {
                 ),
               ),
             ));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
-    final appBar = AppBar(
-      leading: Builder(
-        builder: (BuildContext appBarContext) {
-          return IconButton(
-            icon: Icon(
-              Icons.menu,
-              color: greyDarker,
-            ),
-            tooltip: 'Menu Icon',
-            onPressed: () {
-              // Scaffold.of(context).openDrawer();
-              AppDrawer.of(appBarContext)!.toggle();
-            },
-          );
-        },
-      ),
-      elevation: 0,
-      backgroundColor: Colors.white,
-      title: Text(
-        "Orders",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-          fontFamily: AvailableFonts.primaryFont,
-          color: greenDarker,
-          fontWeight: FontWeight.w600,
-          fontSize: 20,
-        ),
-      ),
-      actions: [
-        IconButton(
-          icon: Icon(
-            Icons.search,
-            color: greyDarker,
-          ),
-          tooltip: 'Menu Icon',
-          onPressed: () {
-            _show(context);
-          },
-        ),
-        IconButton(
-          icon: Icon(
-            Icons.notifications_none_sharp,
-            color: greyDarker,
-          ),
-          tooltip: 'Menu Icon',
-          onPressed: () {
-            _show(context);
-          },
-        )
-      ],
-    );
-
-    return Scaffold(
-      key: widget.key,
-      appBar: appBar,
-    );
   }
 }

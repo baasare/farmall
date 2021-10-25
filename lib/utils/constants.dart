@@ -107,6 +107,11 @@ class AvailableImages {
     'assetPath': 'assets/images/app_logo.png',
   };
 
+  static const profile = {
+    'assetImage': AssetImage('assets/images/profile.png'),
+    'assetPath': 'assets/images/profile.png',
+  };
+
   static const buyer = {
     'assetImage': AssetImage('assets/images/buyer.png'),
     'assetPath': 'assets/images/buyer.png',
@@ -185,5 +190,15 @@ class AvailableImages {
   static const graph = {
     'assetImage': AssetImage('assets/images/graph.png'),
     'assetPath': 'assets/images/graph.png',
+  };
+
+  static const profileBackground = {
+    'assetImage': AssetImage('assets/images/profile_background.png'),
+    'assetPath': 'assets/images/profile_background.png',
+  };
+
+  static const redLentils = {
+    'assetImage': AssetImage('assets/images/red_lentils.png'),
+    'assetPath': 'assets/images/red_lentils.png',
   };
 }

@@ -1,7 +1,7 @@
 import 'package:farmall/screens/root/home_screen.dart';
 import 'package:farmall/screens/root/inventory_screen.dart';
 import 'package:farmall/screens/root/order_screen.dart';
-import 'package:farmall/screens/root/profile_screen.dart';
+import 'package:farmall/screens/root/profile/settings_screen.dart';
 import 'package:farmall/utils/app_config.dart';
 import 'package:farmall/utils/colors.dart';
 import 'package:farmall/widgets/custom_drawer.dart';
@@ -79,7 +79,7 @@ class _RootState extends State<Root> {
           HomeScreen(),
           InventoryScreen(),
           OrderScreen(),
-          ProfileScreen(),
+          SettingScreen(),
         ][_currentIndex],
       ),
     );

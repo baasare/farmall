@@ -17,6 +17,15 @@ const String passwordResetCompleteViewRoute = 'password_reset_complete';
 
 const String rootViewRoute = 'root';
 
+const String inventoryViewRoute = 'inventory';
+const String inventoryDetailViewRoute = 'inventory_detail';
+
+const String ordersViewRoute = 'orders';
+const String orderDetailViewRoute = 'order_detail';
+
 const String notificationViewRoute = 'notification';
+const String termsViewRoute = 'terms';
+const String faqViewRoute = 'faq';
+
 const String profileViewRoute = 'profile';
 const String profileEditViewRoute = 'profile_edit';
