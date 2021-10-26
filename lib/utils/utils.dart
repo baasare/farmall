@@ -1,4 +1,10 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/painting.dart';
+import 'package:flutter_config/flutter_config.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:http/http.dart' as http;
 
 String capitalize(String string) {
   if (string.isEmpty) {
@@ -26,4 +32,19 @@ class HexColor extends Color {
   }
 
   HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+}
+
+Future<String> getAddressFormCoordinates(LatLng coordinates) async {
+  String baseURL = 'https://maps.googleapis.com/maps/api/geocode/json';
+
+  String request =
+      '$baseURL?latlng=${coordinates.latitude},${coordinates.longitude}&key=${FlutterConfig.get('GOOGLE_MAPS_API_KEY')}';
+
+  var httpResponse = await http.get(Uri.parse(request));
+  final httpBody = json.decode(httpResponse.body);
+  final httpResults = httpBody['results'];
+  if (httpResults.length > 0)
+    return httpResults[0]['formatted_address'].toString();
+  else
+    return "";
 }

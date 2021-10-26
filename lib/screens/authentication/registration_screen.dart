@@ -9,6 +9,7 @@ import 'package:farmall/widgets/custom_text_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -21,15 +22,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   bool _saving = false;
 
+  String initialCountry = 'ZA';
+  String phoneNumber = '';
+  PhoneNumber number = PhoneNumber(isoCode: 'ZA');
+
   final emailController = TextEditingController();
-  final usernameController = TextEditingController();
+  final phoneNumberController = TextEditingController();
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final passwordOneController = TextEditingController();
   final passwordTwoController = TextEditingController();
 
   final emailFocusNode = FocusNode();
-  final usernameFocusNode = FocusNode();
+  final phoneNumberFocusNode = FocusNode();
   final firstNameFocusNode = FocusNode();
   final lastNameFocusNode = FocusNode();
   final passwordOneFocusNode = FocusNode();
@@ -38,14 +43,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   void dispose() {
     emailController.dispose();
-    usernameController.dispose();
+    phoneNumberController.dispose();
     firstNameController.dispose();
     lastNameController.dispose();
     passwordOneController.dispose();
     passwordTwoController.dispose();
 
     emailFocusNode.dispose();
-    usernameFocusNode.dispose();
+    phoneNumberFocusNode.dispose();
     firstNameFocusNode.dispose();
     lastNameFocusNode.dispose();
     passwordOneFocusNode.dispose();
@@ -90,20 +95,71 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
     final emailField = CustomTextField(
       currentFocus: emailFocusNode,
-      nextFocus: usernameFocusNode,
+      nextFocus: phoneNumberFocusNode,
       fieldHintText: "Email",
       fieldValidator: Validator.emailValidator,
       fieldController: emailController,
       fieldTextInputAction: TextInputAction.next,
     );
 
-    final usernameField = CustomTextField(
-      currentFocus: usernameFocusNode,
-      nextFocus: passwordOneFocusNode,
-      fieldHintText: "Username",
-      fieldValidator: Validator.textValidator,
-      fieldController: usernameController,
-      fieldTextInputAction: TextInputAction.next,
+    final phoneNumberField = InternationalPhoneNumberInput(
+      onInputChanged: (PhoneNumber phone) {
+        setState(() {
+          phoneNumber = phone.phoneNumber!;
+        });
+      },
+      selectorConfig: SelectorConfig(
+        selectorType: PhoneInputSelectorType.DIALOG,
+      ),
+      ignoreBlank: false,
+      hintText: "",
+      focusNode: phoneNumberFocusNode,
+      inputDecoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+        prefixIconConstraints: BoxConstraints(minWidth: 0, maxHeight: 40),
+        filled: false,
+        fillColor: greyLighter,
+        errorStyle: TextStyle(
+          fontSize: 11.0,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: greenPrimary),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          borderSide: BorderSide(width: 3.0, style: BorderStyle.solid),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          borderSide: BorderSide(color: Colors.red),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          borderSide: BorderSide(color: Colors.red),
+        ),
+      ),
+      autoValidateMode: AutovalidateMode.disabled,
+      selectorTextStyle: TextStyle(color: Colors.black),
+      keyboardAction: TextInputAction.next,
+      textFieldController: phoneNumberController,
+      validator: (value) => Validator.phoneNumberValidator(value!),
+      formatInput: false,
+      initialValue: number,
+      keyboardType: TextInputType.numberWithOptions(
+        signed: true,
+        decimal: true,
+      ),
+      inputBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: BorderSide(color: greenPrimary),
+      ),
+      onFieldSubmitted: (v) {
+        FocusScope.of(context).requestFocus(passwordOneFocusNode);
+      },
+      onSaved: (PhoneNumber number) {
+        print('On Saved: $number');
+      },
     );
 
     final passwordOneField = CustomPasswordField(
@@ -206,7 +262,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Username',
+                'Phone Number',
                 style: TextStyle(
                   letterSpacing: 0.5,
                   fontWeight: FontWeight.w600,
@@ -216,7 +272,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
               ),
             ),
-            usernameField,
+            phoneNumberField,
             SizedBox(
               height: 15.0,
             ),

@@ -3,6 +3,7 @@ import 'package:farmall/routes/routes.dart';
 import 'package:farmall/utils/app_config.dart';
 import 'package:farmall/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 
 Future<void> main() async {
   // bind all files to the app before the app starts. enables environment
@@ -10,7 +11,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // load the environment variables
-  // await FlutterConfig.loadEnvVariables();
+  await FlutterConfig.loadEnvVariables();
 
   runApp(App());
 }
@@ -31,7 +32,7 @@ class App extends StatelessWidget {
       //make flutter aware of app routes using router generator in router.dart file
       onGenerateRoute: router.generateRoute,
 
-      initialRoute: rootViewRoute,
+      initialRoute: firstViewRoute,
     );
   }
 }

@@ -68,10 +68,10 @@ class _RootState extends State<Root> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.account_circle_sharp,
+                Icons.settings,
                 color: _currentIndex == 3 ? greenDarker : greyPrimary,
               ),
-              label: "Profile",
+              label: "settings",
             ),
           ],
         ),
